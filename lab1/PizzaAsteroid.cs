@@ -2,7 +2,7 @@
 
 namespace PizzaAsteroidApp
 {
-    public class PizzaAteroid
+    public class PizzaAsteroid
     {
         public string Name;
         public CrustType Crust;
@@ -22,7 +22,9 @@ namespace PizzaAsteroidApp
             return discoveryDate;
         }
 
-        public PizzaAteroid(string name, CrustType crust, double diameterKm, int temperatureCelsius, bool hasExtraCheese, DateTime discoveryDate)
+        public PizzaAsteroid() { }
+
+        public PizzaAsteroid(string name, CrustType crust, double diameterKm, int temperatureCelsius, bool hasExtraCheese, DateTime discoveryDate)
         {
             Name = name;
             Crust = crust;
