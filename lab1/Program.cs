@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace PizzaAsteroidApp
@@ -29,7 +27,7 @@ namespace PizzaAsteroidApp
                 Console.WriteLine("0 – Вийти з програми");
                 Console.Write(">");
 
-                string ans = Console.ReadLine().Trim();
+                string ans = Console.ReadLine()!.Trim();
                 Console.WriteLine();
 
                 switch (ans)
@@ -73,7 +71,7 @@ namespace PizzaAsteroidApp
             Console.WriteLine("1 - Ввести дані вручну");
             Console.WriteLine("2 - Згенерувати автоматично");
             Console.Write(">");
-            string mode = Console.ReadLine().Trim();
+            string mode = Console.ReadLine()!.Trim();
 
             if (mode == "1")
             {
@@ -118,7 +116,7 @@ namespace PizzaAsteroidApp
             while (true)
             {
                 Console.Write("Введіть назву астероїда (3-20 симв., літери/цифри/-): ");
-                string input = Console.ReadLine().Trim();
+                string input = Console.ReadLine()!.Trim();
 
                 if (!string.IsNullOrEmpty(input) && input.Length >= 3 && input.Length <= 20 &&
                     Regex.IsMatch(input, @"^[a-zA-Zа-яА-ЯіІїЇєЄ0-9\s\-]+$"))
@@ -147,8 +145,8 @@ namespace PizzaAsteroidApp
         {
             while (true)
             {
-                Console.Write("Введіть діаметр у км [0.1 .. 1000.0]: ");
-                if (double.TryParse(Console.ReadLine().Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double val)
+                Console.Write("Введіть діаметр у км (0.1 .. 1000.0): ");
+                if (double.TryParse(Console.ReadLine()!.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double val)
                     && val >= 0.1 && val <= 1000.0)
                 {
                     return Math.Round(val, 2);
@@ -158,10 +156,10 @@ namespace PizzaAsteroidApp
         }
 
         private static int ReadValidatedTemperature()
-        {
+        { 
             while (true)
             {
-                Console.Write("Введіть температуру в °C [-273 .. 500]: ");
+                Console.Write("Введіть температуру в °C (-273 .. 500): ");
                 if (int.TryParse(Console.ReadLine(), out int val) && val >= -273 && val <= 500)
                 {
                     return val;
@@ -175,7 +173,7 @@ namespace PizzaAsteroidApp
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine().Trim().ToLower();
+                string input = Console.ReadLine()!.Trim().ToLower();
                 if (input == "1" || input == "так" || input == "true") return true;
                 if (input == "0" || input == "ні" || input == "false") return false;
                 Console.WriteLine("Помилка! Введіть 1/так або 0/ні.");
@@ -188,7 +186,7 @@ namespace PizzaAsteroidApp
             while (true)
             {
                 Console.Write("Введіть дату відкриття (dd.MM.yyyy, від 01.01.1990 до сьогодні): ");
-                string input = Console.ReadLine().Trim();
+                string input = Console.ReadLine()!.Trim();
 
                 if (DateTime.TryParseExact(input, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
                 {
@@ -253,7 +251,7 @@ namespace PizzaAsteroidApp
             Console.WriteLine("1 – За типом бортика (Crust)");
             Console.WriteLine("2 – За наявністю подвійного сиру (HasExtraCheese)");
             Console.Write(">");
-            string subChoice = Console.ReadLine().Trim();
+            string subChoice = Console.ReadLine()!.Trim();
 
             List<PizzaAsteroid> results = new List<PizzaAsteroid>();
 
@@ -301,7 +299,7 @@ namespace PizzaAsteroidApp
             Console.WriteLine("3 – Створити зіткнення з планетою (CollideWithTarget)");
             Console.Write(">");
 
-            switch (Console.ReadLine().Trim())
+            switch (Console.ReadLine()!.Trim())
             {
                 case "1":
                     Console.Write("На скільки градусів підняти температуру?: ");
@@ -327,7 +325,7 @@ namespace PizzaAsteroidApp
                     break;
                 case "3":
                     Console.Write("Введіть назву планети або супутника: ");
-                    string planet = Console.ReadLine().Trim();
+                    string planet = Console.ReadLine()!.Trim();
                     Console.WriteLine(target.CollideWithTarget(string.IsNullOrWhiteSpace(planet) ? "Марс" : planet));
                     break;
                 default:
@@ -349,7 +347,7 @@ namespace PizzaAsteroidApp
             Console.WriteLine("1 – За порядковим номером у таблиці");
             Console.WriteLine("2 – За назвою (будуть видалені всі збіги)");
             Console.Write(">");
-            string choice = Console.ReadLine().Trim();
+            string choice = Console.ReadLine()!.Trim();
 
             if (choice == "1")
             {
@@ -369,7 +367,7 @@ namespace PizzaAsteroidApp
             else if (choice == "2")
             {
                 Console.Write("Введіть назву для пошуку та видалення: ");
-                string searchName = Console.ReadLine().Trim();
+                string searchName = Console.ReadLine()!.Trim();
 
                 int removedCount = Asteroids.RemoveAll(a => a.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
                 if (removedCount > 0)

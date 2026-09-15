@@ -22,8 +22,10 @@ namespace PizzaAsteroidApp
             return discoveryDate;
         }
 
-        public PizzaAsteroid() { }
-
+        public PizzaAsteroid() 
+        { 
+            Name = string.Empty;
+        }
         public PizzaAsteroid(string name, CrustType crust, double diameterKm, int temperatureCelsius, bool hasExtraCheese, DateTime discoveryDate)
         {
             Name = name;
@@ -40,7 +42,7 @@ namespace PizzaAsteroidApp
             Console.WriteLine($"Астероїд '{Name}' нагрівся на {temperature}°C. Поточна температура: {TemperatureCelsius}°C.");
             if (TemperatureCelsius > 60 && HasExtraCheese)
             {
-                Console.WriteLine("УВАГА! Сир на поверхні розплавився і утворив захисну мантію-скоринку!");
+                Console.WriteLine("УВАГА! Сир на поверхні розплавився і утворив скоринку!");
             }
         }
 
